@@ -1,0 +1,62 @@
+on load:
+    set {color::0} to dustOption(black, 1)
+    set {color::1} to dustOption(dark blue, 1)
+    set {color::2} to dustOption(dark green, 1)
+    set {color::3} to dustOption(dark aqua, 1)
+    set {color::4} to dustOption(dark red, 1)
+    set {color::5} to dustOption(dark purple, 1)
+    set {color::6} to dustOption(gold, 1)
+    set {color::7} to dustOption(gray, 1)
+    set {color::8} to dustOption(dark gray, 1)
+
+on join:
+    set {_num} to a random integer between 1 and 8
+    SpinnySpinSpin(player,{_num})
+
+command /test:
+    trigger:
+        set {_num} to a random integer between 1 and 8
+        SpinnySpinSpin(player,{_num})
+
+function SpinnySpinSpin(p: player,c: integer):
+    set {_loc} to location of {_p}
+    set {_location} to location of {_p}
+    set {_option} to {color::%{_c}%}
+
+
+    set {_v} to spherical vector radius 0.4, yaw 0, pitch 0
+    set {_ref} to {_v}
+    set the pitch of {_ref} to 90
+    loop 1 times:
+        loop 75 times: 
+            add 5 to the yaw of {_v}
+            add 0.01 to the vector length of {_v}
+            draw 1 dust using {_option} at {_location} ~ {_v} ~ vector(0,loop-iteration-2 / 30,0)
+            rotate {_v} around {_ref} by 1
+            wait 1 tick
+        set the vector length of {_v} to 0.4
+
+
+# This is a different spiral just replace line 19 and 14 with "SpinnySpinSpin_2(player,{_num})"
+function SpinnySpinSpin_2(p: player,c: integer):
+    set {_loc} to location of {_p}
+    set {_location} to location of {_p}
+    set {_option} to {color::%{_c}%}
+
+
+    set {_v} to spherical vector radius 0.4, yaw 0, pitch 0
+    set {_ref} to {_v}
+    set the pitch of {_ref} to 90
+    loop 1 times:
+        loop 2000/20 times: 
+            add 5 to the yaw of {_v}
+            add 0.01 to the vector length of {_v}
+            draw 1 dust using {_option} at {_location} ~ {_v} ~ vector(0,loop-iteration-2 / 30,0)
+            rotate {_v} around {_ref} by 1
+        set the vector length of {_v} to 0.4
+        
+        
+        
+
+    
+
